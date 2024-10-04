@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Trail animation</title>
+</head>
+<style>
+     body{
+        margin: 0;
+        background-color: black;
+        height: 100vh;
+     }  
+
+     span{
+        background:url("https://cdn3.iconfinder.com/data/icons/emoji-1-4/64/_love_heart_smiley-256.png");
+        width: 100px;
+        height: 100px;
+        position:absolute;
+        background-size: cover;
+        left:50%;
+        top:50%;
+        transform: translate(-50%,50%);
+        pointer-events: none;
+        animation: animate 6s linear;
+     }
+
+     @keyframes animate {
+        0%{
+            transform: translate(-50%,-50%);
+            opacity: 1;
+            filter: hue-rotate(0);
+        }
+        100%{
+            transform: translate(-50%,-5000%);
+            opacity: 1;
+            filter: hue-rotate(720deg); 
+        }
+     }
+</style>
+<body>
+
+
+    <script>
+         
+const elem=document.querySelector("body");
+elem.addEventListener("mousemove",(event)=>{
+    // console.log(event.offsetX); // event.offset method gives the direction where out mouse is
+   const xpos=event.offsetX;
+   const ypos=event.offsetY;
+   // when we move a new span element create
+   const spanelem=document.createElement("span");
+   spanelem.style.left=xpos+"px";
+   spanelem.style.top=ypos+"px";
+   const size=Math.random()*100;
+   spanelem.style.width=size+"px";
+   spanelem.style.height=size+"px";
+   elem.appendChild(spanelem);
+   setInterval(()=>{
+    spanelem.remove();
+   },3000);
+    
+})
+
+     </script>
+</body>
+</html>
